@@ -3,6 +3,10 @@
 ## this project is based on framework :
 ###  ```https://github.com/daqnext/simple_server_template```
 ## it can be easily integrated into other project
-### after running ```npm run prod ``` you can go to http://localhost to enjoy the demo
+
+### how to run the demo
+#### 1. config your redis endpoint in ./configs/common.js
+#### 2. run command ```npm run prod ```
+#### 3. you can go to http://localhost to enjoy the demo
 
 
