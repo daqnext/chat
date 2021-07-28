@@ -1,4 +1,4 @@
-# chat application
+# daqnext chat application
 
 ## this project is based on framework :
 ###  ```https://github.com/daqnext/simple_server_template```

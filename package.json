@@ -1,6 +1,6 @@
 {
-  "name": "simple_server_template",
-  "version": "1.0.2",
+  "name": "daqnext_chat",
+  "version": "1.0.0",
   "description": "simple & fast",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daqnext/simple_server_template.git"
+    "url": "git+https://github.com/daqnext/chat.git"
   },
   "keywords": [
     "simple",
@@ -20,13 +20,12 @@
   "author": "LEO",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/daqnext/simple_server_template/issues"
+    "url": "https://github.com/daqnext/chat/issues"
   },
-  "homepage": "https://github.com/daqnext/simple_server_template#readme",
+  "homepage": "https://github.com/daqnext/chat#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "bad-words": "^3.0.4",
-    "bad-words-chinese": "^1.0.2",
+    "dirtywords_filter": "^1.0.6",
     "ioredis": "^4.27.6",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
@@ -37,7 +36,6 @@
     "minimist": "^1.2.5",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
-    "naughty-words": "^1.2.0",
     "nodemailer": "^6.6.3",
     "query-string": "^7.0.1",
     "randomstring": "^1.2.1"
