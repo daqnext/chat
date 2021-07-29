@@ -36,7 +36,11 @@
 			window.WebSocket = window.MozWebSocket;
 		}
 		if (window.WebSocket) {
-			socket = new WebSocket("ws://localhost:3601?channel=room11111&key="+makeid(8)+"&verifyurl=http://localhost:3600/verify");
+			socket = new WebSocket("ws://localhost:3601?channel=room11111&key="+makeid(8)
+			+"&verifyurl=http://localhost:3600/verify"
+			+"&username=leo"
+			+"&userid=123"
+			);
 			socket.onmessage = function (event) {
 				var ta = document.getElementById('responseText');
 				ta.value = ta.value + '\n' + event.data
