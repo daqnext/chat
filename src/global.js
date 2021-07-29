@@ -7,6 +7,8 @@ import ioredis from "ioredis";
 import mysql from "mysql2";
 import axios from "axios";
 import randomstring from "randomstring";
+import queryString from "query-string"
+ 
 
 
 //////////////////////////////////////////
@@ -23,8 +25,8 @@ const redis = new ioredis({
     port:args.redis_port,
     host:args.redis_host,
     family:args.redis_family,
-    password:args.redis_password,
-    password:args.redis_db
+    db:args.redis_db
+    //password:args.redis_password,
 });
 
 // Create the connection pool. The pool-specific settings are the defaults
@@ -63,5 +65,5 @@ log4js.configure({
 
 let logger=log4js.getLogger('default');
 
-export {args,ROOTDIR,koaApp,koaRouter,logger,redis,sqlpool,axios,randomstring};
+export {args,ROOTDIR,koaApp,koaRouter,logger,redis,sqlpool,axios,randomstring,queryString};
 

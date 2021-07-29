@@ -4,7 +4,7 @@ var common = {
   logfilename:'default.log',
   logtypes:['console','file'],
   /// server port 
-  port: 80,
+  port: 3600,
 
   //sqldb 
   db_host:'localhost',
@@ -18,11 +18,15 @@ var common = {
   redis_host:'127.0.0.1',
   redis_port:6379,
   redis_password:"",
-  redis_db:0,
+  redis_db:10,
   redis_family:4,
 
+  //websocket
+  ws_port:3601,
+
+
   //cache
-  cache_prefix:'temp_prod_'
+  cache_prefix:'chat_'
  
 };
 

@@ -3,7 +3,7 @@ import json from "koa-json";
 import koastatic from "koa-static";
 import koabodyparser from "koa-bodyparser";
 import fs from "fs"
-
+import {} from "./manager/wsinit.js"
 
 
 /////////ini koa //////////////////////////
@@ -20,7 +20,7 @@ koaApp.use(async (ctx, next)=>{
             }           
     }catch(e){
         ctx.status = 500; ctx.body = "server error";
-        logger.error("erver error:",ctx.request);
+        logger.error("server error:",ctx.request,e);
     }
 });
 
@@ -34,6 +34,8 @@ koaApp.use(koaRouter.routes()).use(koaRouter.allowedMethods());
 koaApp.listen(args.port, () => {
     logger.info('The application is listening on port : ',args.port);
 })
+ 
+
 
 ///////////end of main////////////////////////
 

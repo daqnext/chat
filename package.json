@@ -38,7 +38,8 @@
     "mysql2": "^2.2.5",
     "nodemailer": "^6.6.3",
     "query-string": "^7.0.1",
-    "randomstring": "^1.2.1"
+    "randomstring": "^1.2.1",
+    "ws": "^8.0.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
