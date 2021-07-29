@@ -35,7 +35,7 @@ let wss = new WebSocketServer({
 
  
   let AllSessions={};
-  wss.on('connection', function connection(ws,request,client) {
+  wss.on('connection', async function connection(ws,request,client) {
     
       let userParams=queryString.parse(request.url.replace("/?",""));
 
@@ -48,6 +48,10 @@ let wss = new WebSocketServer({
           }else{
               AllSessions[userParams.channel]={};
           }
+
+          //get past room message to this user
+          let pastmessage=await chatRoom.getMsg(userParams.channel,50);
+          ws.send(JSON.stringify(pastmessage));
 
           AllSessions[userParams.channel][userParams.key]=ws;
 
