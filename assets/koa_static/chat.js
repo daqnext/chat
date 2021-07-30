@@ -14,9 +14,9 @@ $(document).ready(function(){
 
         var bottombox=$("<div>",{"style":"height:100px;width:100%;background-color:#101012;position:absolute;top:0px;box-shadow: 2px 0px 0px 2px #303033;"});
         
-        var inputbox=$("<input>",{"id":"chatinput","style":"border-radius: 10px; padding: 5px 20px; height: 40px; background-color: #1b1b1d; border: 0px; margin: 18px; font-size: 28px;  width: 60%; color: white; display: inline-block; float: right; font-size: 23px;"});
+        var inputbox=$("<input>",{"id":"chatinput","style":"border-radius: 10px; padding:20px; height: 30px; background-color: #1b1b1d; border: 0px; margin: 10px;  width: 66%; color: white; display: inline-block; float: right; font-size: 25px;"});
         
-        var btn=$('<div>',{"id":"chatsend","style":"font-size: 35px;margin: 12px 20px 0px 3px;padding: 5px 15px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;cursor:pointer;text-align:center;float:right;width:100px"});
+        var btn=$('<div>',{"id":"chatsend","style":"font-size: 25px;margin: 11px 12px 0px 3px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;cursor:pointer;text-align:center;float:right;width:80px"});
          
         
         btn.html("send");
@@ -26,7 +26,7 @@ $(document).ready(function(){
         
         div.append(bottombox);
 
-        var innerdisplay=$("<div>",{"id":"chatdisplay","style":"background-color:#2f2f2f;width:100%;height:680px;position:absolute;top:80px;overflow-y:scroll;overflow-x: hidden;"});
+        var innerdisplay=$("<div>",{"id":"chatdisplay","style":"background-color:#2f2f2f;width:100%;height:680px;position:absolute;top:66px;overflow-y:scroll;overflow-x: hidden;padding:10px;"});
         div.append(innerdisplay);
 
 
