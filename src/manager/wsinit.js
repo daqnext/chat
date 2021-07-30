@@ -17,6 +17,11 @@ let wss = new WebSocketServer({
     
       let userParams=queryString.parse(request.url.replace("/?",""));
 
+      userParams.channel=Buffer.from(userParams.channel, 'base64').toString();
+      userParams.verifyurl=Buffer.from(userParams.verifyurl, 'base64').toString();
+      userParams.verifykey=Buffer.from(userParams.verifykey, 'base64').toString();
+ 
+       
       if( userParams.channel&&userParams.channel.length>6&&
           userParams.verifyurl&&userParams.verifykey
           //&&userParams.userid&&userParams.username
@@ -66,6 +71,7 @@ let wss = new WebSocketServer({
                         return;
                       } 
                   } catch (error) {
+                      await ws.send(JSON.stringify({cmd:'login'}));
                       return;
                   }
             }

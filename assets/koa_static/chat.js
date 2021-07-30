@@ -131,12 +131,13 @@ $(function(){
 
 
 
-function startChat(channel,verifyurl,verifykey,){
+function startChat(channel,verifyurl,verifykey){
 
         if (window.WebSocket) {
 
-            window.socket = new WebSocket("ws://chat.hotcat.live:3601?channel="+channel
-            +"&verifyurl="+verifyurl +"&verifykey="+verifykey);
+            window.socket = new WebSocket("ws://chat.hotcat.live:3601?channel="+btoa(channel)
+            +"&verifyurl="+btoa(verifyurl)+"&verifykey="+btoa(verifykey));
+             
 
             window.socket.onmessage = function (event) {
                 var result=JSON.parse(event.data);

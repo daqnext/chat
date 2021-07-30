@@ -30,7 +30,7 @@ var common = {
 
 
   //chat frequency secs
-  chat_freq_secs:15
+  chat_freq_secs:12
  
 };
 
