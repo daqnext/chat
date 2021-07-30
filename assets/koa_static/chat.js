@@ -37,7 +37,7 @@ $(document).ready(function(){
 
         var bottombox=$("<div>",{"style":"height:54px;width:100%;background-color:#101012;position:absolute;bottom:0px;box-shadow: 2px 0px 0px 2px #303033;"});
         
-        var inputbox=$("<input>",{"id":"chatinput","style":"height: 30px;background-color: #2f2f2f;border:0px;margin:10px;font-size: 14px;width: 260px;color:white;display: inline-block;"});
+        var inputbox=$("<input>",{"id":"chatinput","style":"height: 30px;background-color: #2f2f2f;border:0px;margin:10px;font-size: 14px;width: 200px;color:white;display: inline-block;"});
         
         var btn=$('<div>',{"id":"chatsend","style":"font-size: 16px;margin: 5px 0px 0px 3px;padding: 5px 15px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;display:inline-block;cursor:pointer;text-align:center"});
         btn.html("send");
