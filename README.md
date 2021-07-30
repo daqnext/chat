@@ -7,6 +7,6 @@
 ### how to run the demo
 #### 1. config your redis endpoint in ./configs/common.js
 #### 2. run command ```npm run prod ```
-#### 3. you can go to http://localhost to enjoy the demo
+#### 3. you can go to http://localhost:3600/index1.html & http://localhost:3600/index2.html to enjoy the demo
 
 

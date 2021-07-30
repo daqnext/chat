@@ -6,7 +6,7 @@
 	<title>WebSocket Chat</title>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="http://chat.hotcat.live:3600/chat.js"></script>
+	<script src="http://127.0.0.1:3600/chat.js"></script>
 
 
 </head>
@@ -17,27 +17,12 @@
 </body>
 
 <script>
-
-function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
- charactersLength));
-   }
-   return result;
-}
-	//(channel,verifyurl,verifykey)
-	///for each (channel,verifykey) only the latest one is active and unique
-	//startChat('room123','http://chat.hotcat.live:3600/verify',makeid(6));
-
-  startChat('room123','http://center.hotcat.live:7000/api/user/userverify','c8UYrEsNVYHbye7E');
-
+	//(ws_endpoint,channel,verifyurl,verifykey)
+	///for each (ws_endpoint,channel,verifykey) only the latest one is active and unique
+  //startChat("ws://chat.hotcat.live:3601",'room123','http://center.hotcat.live:7000/api/user/userverify','c8UYrEsNVYHbye7E');
+  startChat("ws://127.0.0.1:3601",'room123','http://127.0.0.1:3600/verify','c8UYrEsNVYHbye7E');
 </script>
 
-
  
-
 
 </html>
