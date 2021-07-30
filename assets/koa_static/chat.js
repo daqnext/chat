@@ -194,6 +194,8 @@ function startChat(wsendpoint,channel,verifyurl,verifykey){
                 "&verifyurl="+verifyurl+"&verifykey="+verifykey);
 
             window.socket.onmessage = function (event) {
+
+                alert(event.data);
                 var result=JSON.parse(event.data);
                 if(result instanceof Array ){
 
