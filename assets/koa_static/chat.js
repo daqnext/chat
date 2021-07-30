@@ -196,7 +196,6 @@ function startChat(wsendpoint,channel,verifyurl,verifykey){
             window.socket.onmessage = function (event) {
                 var result=JSON.parse(event.data);
 
-                alert(result);
                 if(result instanceof Array ){
 
                     if(window.mobileCheck()){
