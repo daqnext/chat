@@ -200,7 +200,7 @@ function startChat(wsendpoint,channel,verifyurl,verifykey){
 
                     if(window.mobileCheck()){
 
-                        result.forEach(jmsg => {
+                        result.reverse().forEach(jmsg => {
                             msg=JSON.parse(jmsg);
                             addchatmsg(msg.username,msg.msg,msg.time);
                          });
