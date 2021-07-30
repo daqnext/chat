@@ -13,7 +13,7 @@
                             "ignore_watch": [
                                  
                             ],
-                            "args":["--config=specific1"],
+                            "args":[" "],
                             "instances": "max",
                             "exec_mode": "cluster",
                             "error_file": "./log/pm2_error.log",
