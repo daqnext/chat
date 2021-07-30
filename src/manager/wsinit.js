@@ -16,17 +16,12 @@ let wss = new WebSocketServer({
   wss.on('connection', async function connection(ws,request,client) {
     
       let userParams=queryString.parse(request.url.replace("/?",""));
-
-
+ 
       userParams.channel=Buffer.from(userParams.channel, 'base64').toString();
       userParams.verifyurl=Buffer.from(userParams.verifyurl, 'base64').toString();
       userParams.verifykey=Buffer.from(userParams.verifykey, 'base64').toString();
  
-      console.info(userParams.channel);
-      console.info(userParams.verifyurl);
-      console.info(userParams.verifykey);
-
-       
+        
       if( userParams.channel&&userParams.channel.length>6&&
           userParams.verifyurl&&userParams.verifykey
           //&&userParams.userid&&userParams.username
