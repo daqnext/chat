@@ -60,7 +60,11 @@ log4js.configure({
     categories: {
         default: { appenders: args.logtypes,level: args.loglevel },
     },
-    disableClustering: true
+    
+    pm2: true,
+    pm2InstanceVar: 'INSTANCE_ID'
+    //disableClustering: true
+    
 });
 
 let logger=log4js.getLogger('default');
