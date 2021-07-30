@@ -26,7 +26,11 @@ var common = {
 
 
   //cache
-  cache_prefix:'chat_'
+  cache_prefix:'chat_',
+
+
+  //chat frequency secs
+  chat_freq_secs:15
  
 };
 

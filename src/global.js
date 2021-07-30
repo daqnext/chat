@@ -65,5 +65,12 @@ log4js.configure({
 
 let logger=log4js.getLogger('default');
 
-export {args,ROOTDIR,koaApp,koaRouter,logger,redis,sqlpool,axios,randomstring,queryString};
+
+class time{
+    static Now(){
+        return Math.floor(Date.now() / 1000)
+    }
+}
+
+export {args,ROOTDIR,koaApp,koaRouter,logger,redis,sqlpool,axios,randomstring,queryString,time};
 

@@ -1,5 +1,5 @@
 import WebSocket,{ WebSocketServer } from 'ws';
-import { args,logger } from "../global.js";
+import { args,logger, time } from "../global.js";
 import queryString from "query-string"
 import axios from 'axios';
 import {pubsubManager} from './pubsubManager.js';
@@ -7,41 +7,19 @@ import {chatRoom} from "./chatRoom.js";
 
 
 let wss = new WebSocketServer({
-  port: args.ws_port,  
-  verifyClient: async function(info, done) {
-      let userParams=queryString.parse(info.req.url.replace("/?",""));
-
-      if( userParams.channel&&userParams.channel.length>6&&
-          userParams.verifyurl&&userParams.key&&
-          userParams.userid&&userParams.username
-        ){
-        try {
-            let vurl=userParams.verifyurl+"?key="+userParams.key+'&userid='+
-            userParams.userid+'&username='+userParams.username;
-            let vresponse = await axios.get(vurl);
-            if(vresponse.data.result){
-                done(true);
-            }else{
-                done(false);
-            } 
-        } catch (error) {
-            done(false);
-        }
-      }else{
-        done(false);
-      }
-    }
+  port: args.ws_port
 });
 
  
   let AllSessions={};
+  let KeyVeifiled={};
   wss.on('connection', async function connection(ws,request,client) {
     
       let userParams=queryString.parse(request.url.replace("/?",""));
 
       if( userParams.channel&&userParams.channel.length>6&&
-          userParams.verifyurl&&userParams.key&&
-          userParams.userid&&userParams.username
+          userParams.verifyurl&&userParams.verifykey
+          //&&userParams.userid&&userParams.username
       ){
 
           if(AllSessions[userParams.channel]){
@@ -53,24 +31,58 @@ let wss = new WebSocketServer({
           let pastmessage=await chatRoom.getMsg(userParams.channel,50);
           ws.send(JSON.stringify(pastmessage));
 
-          AllSessions[userParams.channel][userParams.key]=ws;
+          //old (channel,key) exist close it
+          if( AllSessions[userParams.channel][userParams.verifykey]){
+            AllSessions[userParams.channel][userParams.verifykey].close();
+          }
+          AllSessions[userParams.channel][userParams.verifykey]=ws;
 
-          
           //////////////sub to some channel////////////////
           pubsubManager.newSub(userParams.channel,(channel, message) => {          
-              for (const key of Object.keys(AllSessions[userParams.channel])) {               
-                  if(AllSessions[userParams.channel][key].readyState === WebSocket.OPEN){
-                      AllSessions[userParams.channel][key].send(message);
+              for (const verifykey of Object.keys(AllSessions[userParams.channel])) {               
+                  if(AllSessions[userParams.channel][verifykey].readyState === WebSocket.OPEN){
+                      AllSessions[userParams.channel][verifykey].send(message);
                   }else{
-                      delete AllSessions[userParams.channel][key]; 
+                      delete AllSessions[userParams.channel][verifykey]; 
                   }    
               }
           }); 
 
           ws.on('message', async function message(msg) {
-            let pub =pubsubManager.newPub(userParams.channel); 
-            let jmsg=await chatRoom.addMsg(userParams.channel,userParams.userid,userParams.username,msg.toString());
-            await pub.redis.publish(pub.channel,jmsg);
+
+            ///verify the user
+            if(!KeyVeifiled[userParams.verifykey]){
+              try{
+                      let vresponse = await axios.post(userParams.verifyurl,{verifykey:userParams.verifykey});
+                      if(vresponse.data.result){
+                          KeyVeifiled[userParams.verifykey]=
+                          {
+                              userid:vresponse.data.userid,
+                              username:vresponse.data.username,
+                              updatetime:time.Now()-args.chat_freq_secs-1
+                          };
+                      }else{
+                        await ws.send(JSON.stringify({cmd:'login'}));
+                        return;
+                      } 
+                  } catch (error) {
+                      return;
+                  }
+            }
+
+             //////////////verify passed//////////////
+
+             //timing passed?
+            if(KeyVeifiled[userParams.verifykey].updatetime<time.Now()-args.chat_freq_secs){
+                KeyVeifiled[userParams.verifykey].updatetime=time.Now();
+                let pub =pubsubManager.newPub(userParams.channel); 
+                let jmsg=await chatRoom.addMsg(userParams.channel,KeyVeifiled[userParams.verifykey].userid,KeyVeifiled[userParams.verifykey].username,msg.toString());
+                await pub.redis.publish(pub.channel,jmsg);
+
+            }else{
+                await ws.send(JSON.stringify({cmd:'time'}));
+            }
+
           });
       }
 
