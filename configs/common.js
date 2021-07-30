@@ -17,7 +17,7 @@ var common = {
   //////////use things below/////////////////
 
   //redis
-  redis_host:'127.0.0.1',
+  redis_host: "mesoncenter-redis.vktrsm.0001.usw1.cache.amazonaws.com",
   redis_port:6379,
   redis_password:"",
   redis_db:10,
