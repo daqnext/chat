@@ -14,9 +14,9 @@ $(document).ready(function(){
 
         var bottombox=$("<div>",{"style":"height:100px;width:100%;background-color:#101012;position:absolute;top:0px;box-shadow: 2px 0px 0px 2px #303033;"});
         
-        var inputbox=$("<input>",{"id":"chatinput","style":"border-radius: 10px; padding:20px; height: 30px; background-color: #1b1b1d; border: 0px; margin: 10px;  width: 66%; color: white; display: inline-block; float: right; font-size: 25px;"});
+        var inputbox=$("<input>",{"id":"chatinput","style":"border-radius: 10px; padding: 2px 10px; background-color: #1b1b1d;border: 0px;margin: 10px;width: 66%;color: white;display: inline-block;float:right;font-size: 20px;"});
         
-        var btn=$('<div>',{"id":"chatsend","style":"font-size: 25px;margin: 11px 12px 0px 3px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;cursor:pointer;text-align:center;float:right;width:80px"});
+        var btn=$('<div>',{"id":"chatsend","style":"font-size: 24px;margin: 8px 12px 0px 3px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;cursor:pointer;text-align:center;float:right;width:80px"});
          
         
         btn.html("send");
@@ -26,7 +26,7 @@ $(document).ready(function(){
         
         div.append(bottombox);
 
-        var innerdisplay=$("<div>",{"id":"chatdisplay","style":"background-color:#2f2f2f;width:100%;height:680px;position:absolute;top:66px;overflow-y:scroll;overflow-x: hidden;padding:10px;"});
+        var innerdisplay=$("<div>",{"id":"chatdisplay","style":"background-color:#2f2f2f;width:100%;height:680px;position:absolute;top:52px;overflow-y:scroll;overflow-x: hidden;padding:10px;"});
         div.append(innerdisplay);
 
 
@@ -110,13 +110,11 @@ function addchatmsg(name,msg,timestr){
     let msgdiv=$('<div>',{"style":"width:335px;margin:5px 0px;padding:3px 10px;background:none;"});
 
     if(window.mobileCheck()){
-        msgdiv=$('<div>',{"style":"margin:5px 0px;padding:3px 10px;background:none;"});
+        msgdiv=$('<div>',{"style":"margin:0px;padding:1px 10px;background:none;"});
     }
 
     let namespan=$('<span>',{"style":"color:#d4d4d4;font-size:15px;font-weight:bold;margin-right:5px"});
-    if(window.mobileCheck()){
-        namespan=$('<span>',{"style":"color:#d4d4d4;font-size:22px;font-weight:bold;margin-right:5px"});
-    }
+     
     if(name){
         namespan.html(name+' : ');
     }else{
@@ -124,16 +122,13 @@ function addchatmsg(name,msg,timestr){
     }
  
     let textspan=$('<span>',{"style":"color:#d4d4d4;font-size:14px;"});
-    if(window.mobileCheck()){
-        textspan=$('<span>',{"style":"color:#d4d4d4;font-size:20px;"});
-    }
-
+      
     textspan.html(msg);
 
     if(timestr){
         let timediv=$('<div>',{"style":"font-style: italic;color:#797979;font-size:9px;"});
         if(window.mobileCheck()){
-            timediv=$('<div>',{"style":"font-style: italic;color:#797979;font-size:15px;"});
+            timediv=$('<div>',{"style":"font-style: italic;color:#797979;font-size:12px;"});
         }
         timediv.html(timestr);
         msgdiv.append(timediv); 
