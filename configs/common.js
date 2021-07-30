@@ -14,6 +14,8 @@ var common = {
   db_name:'test',
   db_pool_num:5,
 
+  //////////use things below/////////////////
+
   //redis
   redis_host:'127.0.0.1',
   redis_port:6379,
@@ -23,7 +25,6 @@ var common = {
 
   //websocket
   ws_port:3601,
-
 
   //cache
   cache_prefix:'chat_',
