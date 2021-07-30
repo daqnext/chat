@@ -190,8 +190,8 @@ function startChat(wsendpoint,channel,verifyurl,verifykey){
 
         if (window.WebSocket) {
 
-            window.socket = new WebSocket(wsendpoint+"?channel="+btoa(channel)+
-                "&verifyurl="+btoa(verifyurl)+"&verifykey="+btoa(verifykey));
+            window.socket = new WebSocket(wsendpoint+"?channel="+channel+
+                "&verifyurl="+verifyurl+"&verifykey="+verifykey);
 
             window.socket.onmessage = function (event) {
                 var result=JSON.parse(event.data);
