@@ -6,12 +6,12 @@ window.mobileCheck = function() {
     // return check;
   };
 
-$(document).ready(function(){
+$(function(){
 
     var div=$("#chatwindow");
     
 
-    if(window.mobileCheck()){
+    if(true){
 
         alert("is mobile");
 
