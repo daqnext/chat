@@ -42,6 +42,7 @@ let sqlpool = mysql.createPool({
 
 
 
+ 
 ///////////global log4js//////////////
 log4js.configure({
     appenders: {
@@ -60,10 +61,10 @@ log4js.configure({
     categories: {
         default: { appenders: args.logtypes,level: args.loglevel },
     },
-    
+ 
     pm2: true,
-    pm2InstanceVar: 'INSTANCE_ID'
-    //disableClustering: true
+    pm2InstanceVar: 'INSTANCE_ID',
+    disableClustering: true
     
 });
 

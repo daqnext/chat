@@ -15,6 +15,7 @@ let wss = new WebSocketServer({
   let KeyVeifiled={};
   wss.on('connection', async function connection(ws,request,client) {
     
+
       let userParams=queryString.parse(request.url.replace("/?",""));
 
       userParams.channel=Buffer.from(userParams.channel, 'base64').toString();
