@@ -83,7 +83,12 @@ let wss = new WebSocketServer({
                 KeyVeifiled[userParams.verifykey].updatetime=time.Now();
                 let pub =pubsubManager.newPub(userParams.channel); 
                 let jmsg=await chatRoom.addMsg(userParams.channel,KeyVeifiled[userParams.verifykey].userid,KeyVeifiled[userParams.verifykey].username,msg.toString());
-                await pub.redis.publish(pub.channel,jmsg);
+                 
+                if(jmsg=="no_msg"||jmsg=="long_msg"){
+                    await ws.send(JSON.stringify({cmd:jmsg}));
+                }else{
+                    await pub.redis.publish(pub.channel,jmsg);
+                }
 
             }else{
                 await ws.send(JSON.stringify({cmd:'time'}));

@@ -1,7 +1,7 @@
 import {redis} from "../global.js";
 import moment from 'moment'
 import dwf from 'dirtywords_filter';
-
+import sanitizeHtml from 'sanitize-html';
 
 class chatRoom{
 
@@ -9,9 +9,15 @@ class chatRoom{
 
         msg=msg.trim();
         if(msg.length==0){
-            return ;
+            return 'no_msg';
         }
 
+        if(msg.length>150){
+            return "long_msg";
+        }
+
+        msg=sanitizeHtml(msg);
+        
         let jmsg=JSON.stringify({
             roomid:roomId,
             userid:userId,

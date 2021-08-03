@@ -230,6 +230,16 @@ function startChat(wsendpoint,channel,verifyurl,verifykey){
                         if(result.cmd=='time'){
                             addchatmsg("system"," too frequent","now");
                         }
+
+                        if(result.cmd=='no_msg'){
+                            addchatmsg("system","no message ","now");
+                        }
+
+                        if(result.cmd=='long_msg'){
+                            addchatmsg("system"," too long message","now");
+                        }
+
+                        
                         
                         chatupdate();
                     }else{
