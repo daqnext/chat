@@ -6,22 +6,25 @@ import {pubsubManager} from './pubsubManager.js';
 import {chatRoom} from "./chatRoom.js";
 
 
+
 let wss = new WebSocketServer({
   port: args.ws_port
 });
+
 
  
   let AllSessions={};
   let KeyVeifiled={};
   wss.on('connection', async function connection(ws,request,client) {
     
+
       let userParams=queryString.parse(request.url.replace("/?",""));
- 
+
       userParams.channel=Buffer.from(userParams.channel, 'base64').toString();
       userParams.verifyurl=Buffer.from(userParams.verifyurl, 'base64').toString();
       userParams.verifykey=Buffer.from(userParams.verifykey, 'base64').toString();
  
-        
+       
       if( userParams.channel&&userParams.channel.length>6&&
           userParams.verifyurl&&userParams.verifykey
           //&&userParams.userid&&userParams.username
@@ -53,8 +56,8 @@ let wss = new WebSocketServer({
               }
           }); 
 
-          ws.on('message', async function message(msg) {
 
+          ws.on('message', async function message(msg) {
             ///verify the user
             if(!KeyVeifiled[userParams.verifykey]){
               try{
@@ -83,25 +86,41 @@ let wss = new WebSocketServer({
                 KeyVeifiled[userParams.verifykey].updatetime=time.Now();
                 let pub =pubsubManager.newPub(userParams.channel); 
                 let jmsg=await chatRoom.addMsg(userParams.channel,KeyVeifiled[userParams.verifykey].userid,KeyVeifiled[userParams.verifykey].username,msg.toString());
-                 
+                
                 if(jmsg=="no_msg"||jmsg=="long_msg"){
                     await ws.send(JSON.stringify({cmd:jmsg}));
                 }else{
                     await pub.redis.publish(pub.channel,jmsg);
                 }
-
+                
             }else{
                 await ws.send(JSON.stringify({cmd:'time'}));
             }
 
           });
+
+            ///////////////
+            wss.on('close', function close() {
+               // logger.info("closed");
+            });
+
+            const interval = setInterval(function ping() {
+                if(ws.readyState === WebSocket.OPEN){
+                    //logger.info("interval 30 , status check opn");
+                    ws.ping(function(){});
+                }else{
+                    //logger.info(ws.readyState);
+                    //logger.info("interval 30 , status check closed");
+                    clearTimeout(interval);
+                }
+            }, 3000);
+
+      }else{
+        //wrong url link just do nothing
       }
 
   });
-
-  
-
-
+ 
   //not take any effect 
   // wss.on('open', function open() {
   //   logger.info("websocket open");
@@ -110,6 +129,5 @@ let wss = new WebSocketServer({
   // wss.on('close', function close() {
   //   logger.info("websocket close");
   // });
-
-
+  
 export {};
