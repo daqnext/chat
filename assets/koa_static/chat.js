@@ -135,9 +135,9 @@ function addchatmsg(name,msg,timestr){
         namespan.html('&nbsp');
     }
  
-    let textspan=$('<span>',{"style":"color:#d4d4d4;font-size:14px;"});
+    let textspan=$('<span>',{"style":"color:#d4d4d4;font-size:14px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
     if(window.mobileCheck()){
-        textspan=$('<span>',{"style":"color:#d4d4d4;font-size:20px;"});
+        textspan=$('<span>',{"style":"color:#d4d4d4;font-size:20px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
     }
 
     textspan.html(msg);
@@ -150,16 +150,15 @@ function addchatmsg(name,msg,timestr){
         timediv.html(timestr);
         msgdiv.append(timediv); 
     }
-    msgdiv.append(namespan);
-    msgdiv.append(textspan);
 
+    textspan.prepend(namespan);
+    msgdiv.append(textspan);
+ 
     if(window.mobileCheck()){
         $("#chatdisplay").prepend(msgdiv);
     }else{
         $("#chatdisplay").append(msgdiv);
     }
-    
-     
 }
 
 function chatupdate(){
