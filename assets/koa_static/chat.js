@@ -28,7 +28,7 @@ $(document).ready(function(){
         
         var inputbox=$("<input>",{"id":"chatinput","onkeydown":"inputcheck(this)", "style":"border-radius: 10px; padding: 5px 20px; height: 40px; background-color: #1b1b1d; border: 0px; margin: 18px; font-size: 28px;  width: 60%; color: white; display: inline-block; float: right; font-size: 23px;"});
         
-        var btn=$('<div>',{"id":"chatsend","style":"font-size: 35px;margin: 12px 20px 0px 3px;padding: 5px 15px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;cursor:pointer;text-align:center;float:right;width:100px"});
+        var btn=$('<div>',{"id":"chatsend","style":"font-size: 28px;margin: 15px 20px 0px 3px;padding: 5px 15px;background-color: #1b3896;border-radius:5px;color:#fdfdfd;cursor:pointer;text-align:center;float:right;width:100px"});
          
  
         btn.html("send");
@@ -127,7 +127,7 @@ function addchatmsg(name,msg,timestr){
 
     let namespan=$('<span>',{"style":"color:#d4d4d4;font-size:15px;font-weight:bold;margin-right:5px"});
     if(window.mobileCheck()){
-        namespan=$('<span>',{"style":"color:#d4d4d4;font-size:22px;font-weight:bold;margin-right:5px"});
+        namespan=$('<span>',{"style":"color:#d4d4d4;font-size:18px;font-weight:bold;margin-right:5px"});
     }
     if(name){
         namespan.html(name+' : ');
@@ -137,7 +137,7 @@ function addchatmsg(name,msg,timestr){
  
     let textspan=$('<div>',{"style":"width:270px;color:#d4d4d4;font-size:14px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
     if(window.mobileCheck()){
-        textspan=$('<div>',{"style":"width:98%;color:#d4d4d4;font-size:20px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
+        textspan=$('<div>',{"style":"width:98%;color:#d4d4d4;font-size:16px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
     }
 
     textspan.html(msg);
@@ -145,7 +145,7 @@ function addchatmsg(name,msg,timestr){
     if(timestr){
         let timediv=$('<div>',{"style":"font-style: italic;color:#797979;font-size:9px;"});
         if(window.mobileCheck()){
-            timediv=$('<div>',{"style":"font-style: italic;color:#797979;font-size:15px;"});
+            timediv=$('<div>',{"style":"font-style: italic;color:#797979;font-size:13px;"});
         }
         timediv.html(timestr);
         msgdiv.append(timediv); 
