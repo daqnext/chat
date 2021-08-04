@@ -6,9 +6,11 @@ import {pubsubManager} from './pubsubManager.js';
 import {chatRoom} from "./chatRoom.js";
 
 
+
 let wss = new WebSocketServer({
   port: args.ws_port
 });
+
 
  
   let AllSessions={};
@@ -54,8 +56,8 @@ let wss = new WebSocketServer({
               }
           }); 
 
-          ws.on('message', async function message(msg) {
 
+          ws.on('message', async function message(msg) {
             ///verify the user
             if(!KeyVeifiled[userParams.verifykey]){
               try{
@@ -96,9 +98,35 @@ let wss = new WebSocketServer({
             }
 
           });
+
+            ///////////////
+            wss.on('close', function close() {
+               // logger.info("closed");
+            });
+
+            const interval = setInterval(function ping() {
+                if(ws.readyState === WebSocket.OPEN){
+                    //logger.info("interval 30 , status check opn");
+                    ws.ping(function(){});
+                }else{
+                    //logger.info(ws.readyState);
+                    //logger.info("interval 30 , status check closed");
+                    clearTimeout(interval);
+                }
+            }, 3000);
+
+      }else{
+        //wrong url link just do nothing
       }
 
+       
+
   });
+
+
+
+ 
+
 
   
 
