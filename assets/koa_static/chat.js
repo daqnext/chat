@@ -135,9 +135,9 @@ function addchatmsg(name,msg,timestr){
         namespan.html('&nbsp');
     }
  
-    let textspan=$('<span>',{"style":"color:#d4d4d4;font-size:14px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
+    let textspan=$('<div>',{"style":"width:270px;color:#d4d4d4;font-size:14px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
     if(window.mobileCheck()){
-        textspan=$('<span>',{"style":"color:#d4d4d4;font-size:20px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
+        textspan=$('<div>',{"style":"width:98%;color:#d4d4d4;font-size:20px;word-wrap:break-word !important;word-break:break-all !important;white-space:pre-wrap !important;"});
     }
 
     textspan.html(msg);
