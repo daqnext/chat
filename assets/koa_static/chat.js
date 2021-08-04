@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     if(window.mobileCheck()){
 
-        var bottombox=$("<div>",{"style":"height:58px;width:100%;background-color:#101012;position:absolute;top:0px;box-shadow: 2px 0px 0px 2px #303033;"});
+        var bottombox=$("<div>",{"style":"height:52px;width:100%;background-color:#101012;position:absolute;top:0px;box-shadow: 2px 0px 0px 2px #303033;"});
         
         var inputbox=$("<input>",{"id":"chatinput","onkeydown":"inputcheck(this)", "style":"border-radius: 10px; padding: 5px 20px; height: 33px; background-color: #1b1b1d; border: 0px; margin: 10px 15px;width:62%; color: white; display: inline-block; float: right; font-size: 21px;"});
         
@@ -38,7 +38,7 @@ $(document).ready(function(){
         
         div.append(bottombox);
 
-        var innerdisplay=$("<div>",{"id":"chatdisplay","style":"background-color:#2f2f2f;width:100%;height:680px;position:absolute;top:58px;overflow-y:scroll;overflow-x: hidden;"});
+        var innerdisplay=$("<div>",{"id":"chatdisplay","style":"background-color:#2f2f2f;width:100%;height:680px;position:absolute;top:52px;overflow-y:scroll;overflow-x: hidden;"});
         div.append(innerdisplay);
 
 
